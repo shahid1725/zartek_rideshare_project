@@ -24,7 +24,8 @@ class RegisterView(generics.CreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         username = request.data.get('username')
@@ -37,29 +38,27 @@ class LoginView(APIView):
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-#--------------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------------
 
 class RideCreateView(generics.CreateAPIView):
     queryset = Ride.objects.all()
     serializer_class = RideSerializer
 
 
-
-
-
-
 class RideDetailView(generics.RetrieveAPIView):
     queryset = Ride.objects.all()
     serializer_class = RideSerializer
 
+
 class RideListView(generics.ListAPIView):
     queryset = Ride.objects.all()
     serializer_class = RideSerializer
-
 
 
 class RideStatusUpdateView(UpdateAPIView):
@@ -67,7 +66,8 @@ class RideStatusUpdateView(UpdateAPIView):
     serializer_class = RideStatusUpdateSerializer
     lookup_field = 'pk'  # or any other lookup field you prefer
 
-#--------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------
 
 class TestCreateView(generics.CreateAPIView):
     queryset = Test.objects.all()

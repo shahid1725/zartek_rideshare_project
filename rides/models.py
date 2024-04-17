@@ -20,6 +20,11 @@ class Ride(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     updated_at = models.DateTimeField(auto_now=True,null=True)
 
+    current_location = models.CharField(max_length=255, blank=True, null=True)
+
+
+
+
     def __str__(self):
         return f"Ride {self.id} - {self.status}"
     

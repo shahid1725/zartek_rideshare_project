@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rides',
-    'rest_framework'
+    'rest_framework',
+    'celery',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CELERY_BEAT_SCHEDULE = {
+    'update-ride-locations': {
+        'task': 'rides.tasks.update_tasks.update_ride_locations',
+        'schedule': 60,  # Run every 60 seconds (adjust as needed)
+    },
+}
+
+# Celery Configuration
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'

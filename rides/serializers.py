@@ -28,7 +28,7 @@ class RideStatusUpdateSerializer(serializers.ModelSerializer):
         model = Ride
         fields = ['status']
 
-#---------------------------------------------------------------------------------
+
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
